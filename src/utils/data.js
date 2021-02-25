@@ -1,6 +1,6 @@
 export default {
-    hirogana: {
-        a: 'あ',
-        i: 'い'
-    }
+    hirogana: [
+        { text: 'あ', include: true },
+        { text: 'い', include: true }
+    ]
 }
