@@ -1,42 +1,45 @@
 <template>
   <div id="app" class="flex-center-container">
-    <div v-if="state.isShowModal" class="modal-mask">
-      <div class="modal-window">
-        <button class="close_modal__button" v-on:click="state.isShowModal = false">X</button>
-        <h1>I am modal</h1>
-      </div>
-    </div>
+    <Settings v-if="state.isShowModal" @close="invertShowModal" />
     <h1 v-if="state.isStart">{{ hirogana[0].text }}</h1>
     <div class="buttons">
-      <button v-on:click="invertStart()">{{ state.isStart ? 'Stop' : 'Start' }}</button>
-      <button v-if="!state.isStart" v-on:click="state.isShowModal = true">Settings</button>
+      <button v-on:click="invertStart()">
+        {{ state.isStart ? "Stop" : "Start" }}
+      </button>
+      <button v-if="!state.isStart" v-on:click="invertShowModal()">
+        Settings
+      </button>
     </div>
   </div>
 </template>
 
 <script>
-import Data from './utils/data'
+import Data from "./utils/data";
+import Settings from "./components/Settings";
 
 export default {
-  name: 'App',
+  name: "App",
+  components: {
+    Settings,
+  },
   data() {
     return {
       hirogana: Data.hirogana,
       state: {
         isStart: false,
-        isShowModal: false
-      }
-    }
+        isShowModal: false,
+      },
+    };
   },
   methods: {
     invertStart() {
       this.state.isStart = !this.state.isStart;
     },
-    showModal() {
-      
-    }
-  }
-}
+    invertShowModal() {
+      this.state.isShowModal = !this.state.isShowModal;
+    },
+  },
+};
 </script>
 
 <style>
@@ -45,16 +48,21 @@ export default {
   align-items: center;
   flex-direction: column;
 }
+
 #app {
   justify-content: center;
 }
 
-html, body, #app, .modal-mask {
+html,
+body,
+#app {
   width: 100%;
   height: 100%;
 }
 
-html, body, h1 {
+html,
+body,
+h1 {
   margin: 0;
   padding: 0;
 }
@@ -65,33 +73,6 @@ html, body, h1 {
 
 .buttons > button {
   margin: 0 10px;
-}
-
-.modal-mask {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 9999;
-  background-color: rgba(0, 0, 0, 0.5);
-  transform: opacity 0.5s ease;
-  transition: 0.5s
-}
-
-.modal-window {
-  background-color: white;
-  position: relative;
-  top: 30%;
-  left: 30%;
-  width: 40%;
-  border: 3px solid red;
-  border-radius: 10px;
-  padding: 10px;
-}
-
-.close_modal__button {
-  position: absolute;
-  top: 10px;
-  right: 10px;
 }
 
 button:hover {
@@ -107,5 +88,6 @@ button {
   border-radius: 10px;
   border: 0;
   padding: 10px 10px;
+  outline: none;
 }
 </style>
