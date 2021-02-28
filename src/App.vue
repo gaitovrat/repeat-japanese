@@ -23,6 +23,7 @@ export default {
   data() {
     return {
       hirogana: Data.hiragana,
+      katakana: Data.katakana,
       state: {
         isStart: false,
         isShowModal: false,
