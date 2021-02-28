@@ -22,7 +22,7 @@ export default {
   },
   data() {
     return {
-      hirogana: Data.hirogana,
+      hirogana: Data.hiragana,
       state: {
         isStart: false,
         isShowModal: false,
