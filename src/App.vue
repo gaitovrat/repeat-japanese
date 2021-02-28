@@ -1,14 +1,10 @@
 <template>
   <div id="app" class="flex-center-container">
     <Settings v-if="state.isShowModal" @close="invertShowModal" />
-    <h1 v-if="state.isStart">{{ hirogana[0].text }}</h1>
-    <div class="buttons">
-      <button v-on:click="invertStart()">
-        {{ state.isStart ? "Stop" : "Start" }}
-      </button>
-      <button v-if="!state.isStart" v-on:click="invertShowModal()">
-        Settings
-      </button>
+    <Chars v-if="state.isStart" @close="invertStart" />
+    <div class="buttons" v-else>
+      <button v-on:click="invertStart()">Start</button>
+      <button v-on:click="invertShowModal()">Settings</button>
     </div>
   </div>
 </template>
@@ -16,11 +12,13 @@
 <script>
 import Data from "./utils/data";
 import Settings from "./components/Settings";
+import Chars from "./components/Chars";
 
 export default {
   name: "App",
   components: {
     Settings,
+    Chars,
   },
   data() {
     return {
@@ -46,10 +44,6 @@ export default {
 .flex-center-container {
   display: flex;
   align-items: center;
-  flex-direction: column;
-}
-
-#app {
   justify-content: center;
 }
 
@@ -69,6 +63,8 @@ h1 {
 
 .buttons {
   flex-direction: row;
+  align-items: center;
+  justify-content: center;
 }
 
 .buttons > button {
@@ -79,14 +75,14 @@ button:hover {
   background-color: white;
   color: black;
   border: 2px solid red;
-  padding: 8px 10px;
+  padding: 10px 10px;
 }
 
 button {
   background-color: red;
   color: white;
   border-radius: 10px;
-  border: 0;
+  border: 2px solid white;
   padding: 10px 10px;
   outline: none;
 }
