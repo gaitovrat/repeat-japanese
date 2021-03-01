@@ -1,10 +1,10 @@
 <template>
   <div class="chars flex-center-container">
-    <div class="char">{{ charRandom }}</div>
+    <div class="char">{{ char }}</div>
     <input type="text" name="text" id="text" autocomplete="off" />
     <div class="buttons">
       <button v-on:click="stop()">Stop</button>
-      <button v-on:click="next()">Next</button>
+      <button v-on:click="setRandomChar()">Next</button>
     </div>
   </div>
 </template>
@@ -21,20 +21,18 @@ export default {
     stop() {
       this.$emit("close");
     },
-    getChar() {
+    getRandomChar() {
       return this.kana[Math.floor(Math.random() * this.kana.length)].kana;
     },
-    next() {
-      this.char = this.getChar();
+    setRandomChar() {
+      this.char = this.getRandomChar();
     },
+  },
+  beforeMount() {
+    this.setRandomChar()
   },
   props: {
     kana: Array,
-  },
-  computed: {
-    charRandom() {
-      return this.char ? this.char : this.getChar()
-    },
   },
 };
 </script>
