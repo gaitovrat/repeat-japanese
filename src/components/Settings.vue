@@ -1,7 +1,7 @@
 <template>
   <div class="settings">
-    <div class="modal-window">
-      <button class="close_modal__button" v-on:click="close()">X</button>
+    <div class="settings__modal">
+      <button class="settings__close" v-on:click="close()">X</button>
       <h1>I am modal</h1>
     </div>
   </div>
@@ -12,7 +12,7 @@ export default {
   name: "Settings",
   methods: {
     close() {
-      this.$emit("close");
+      this.$emit("close")
     },
   },
 };
@@ -31,7 +31,7 @@ export default {
   transition: 0.5s;
 }
 
-.modal-window {
+.settings__modal {
   background-color: white;
   position: relative;
   top: 30%;
@@ -42,7 +42,7 @@ export default {
   padding: 10px;
 }
 
-.close_modal__button {
+.settings__close {
   position: absolute;
   top: 10px;
   right: 10px;

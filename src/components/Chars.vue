@@ -1,10 +1,10 @@
 <template>
   <div class="chars flex-center-container">
-    <div class="char">A</div>
-    <input type="text" name="text" id="text" autocomplete="off"/>
+    <div class="char">{{ charRandom }}</div>
+    <input type="text" name="text" id="text" autocomplete="off" />
     <div class="buttons">
       <button v-on:click="stop()">Stop</button>
-      <button>Next</button>
+      <button v-on:click="next()">Next</button>
     </div>
   </div>
 </template>
@@ -12,15 +12,34 @@
 <script>
 export default {
   name: "Chars",
+  data() {
+    return {
+      char: "",
+    };
+  },
   methods: {
     stop() {
       this.$emit("close");
+    },
+    getChar() {
+      return this.kana[Math.floor(Math.random() * this.kana.length)].kana;
+    },
+    next() {
+      this.char = this.getChar();
+    },
+  },
+  props: {
+    kana: Array,
+  },
+  computed: {
+    charRandom() {
+      return this.char ? this.char : this.getChar()
     },
   },
 };
 </script>
 
-<style>
+<style scoped>
 .chars {
   flex-direction: column;
 }
@@ -29,20 +48,5 @@ export default {
   font-weight: bold;
   font-size: 10rem;
   text-align: center;
-}
-
-input {
-  border: 0;
-  padding: 5px;
-  margin: 5px;
-  border-bottom: 2px solid gray;
-  text-align: center;
-  font-size: 2rem;
-}
-
-input:focus {
-  outline: none;
-  border-bottom: 2px solid red;
-  transition: 1s;
 }
 </style>

@@ -1,10 +1,13 @@
 <template>
   <div id="app" class="flex-center-container">
     <Settings v-if="state.isShowModal" @close="invertShowModal" />
-    <Chars v-if="state.isStart" @close="invertStart" />
-    <div class="buttons" v-else>
-      <button v-on:click="invertStart()">Start</button>
-      <button v-on:click="invertShowModal()">Settings</button>
+    <Chars v-bind:kana="getKana()" v-if="state.isStart" @close="invertStart" />
+    <div v-else>
+      <h1>Japanese-Repeate</h1>
+      <div class="buttons flex-center-container">
+        <button v-on:click="invertStart()">Start</button>
+        <button v-on:click="invertShowModal()">Settings</button>
+      </div>
     </div>
   </div>
 </template>
@@ -22,7 +25,7 @@ export default {
   },
   data() {
     return {
-      hirogana: Data.hiragana,
+      hiragana: Data.hiragana,
       katakana: Data.katakana,
       state: {
         isStart: false,
@@ -37,7 +40,10 @@ export default {
     invertShowModal() {
       this.state.isShowModal = !this.state.isShowModal;
     },
-  },
+    getKana() {
+      return [...this.hiragana, ...this.katakana]
+    }
+  }
 };
 </script>
 
@@ -86,5 +92,25 @@ button {
   border: 2px solid white;
   padding: 10px 10px;
   outline: none;
+}
+
+h1 {
+  font-size: 5rem;
+  margin-bottom: 10%;
+}
+
+input {
+  border: 0;
+  padding: 5px;
+  margin: 5px;
+  border-bottom: 2px solid gray;
+  text-align: center;
+  font-size: 2rem;
+}
+
+input:focus {
+  outline: none;
+  border-bottom: 2px solid red;
+  transition: 1s;
 }
 </style>
