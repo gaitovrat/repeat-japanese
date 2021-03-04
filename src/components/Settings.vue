@@ -2,20 +2,23 @@
   <div class="settings">
     <div class="settings__modal">
       <button class="settings__close" v-on:click="close()">X</button>
-      <h1>I am modal</h1>
+      <h2>Kana</h2>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: "Settings",
+  name: 'Settings',
+  props: {
+    kana: Array,
+  },
   methods: {
     close() {
-      this.$emit("close")
+      this.$emit('close')
     },
   },
-};
+}
 </script>
 
 <style scoped>
