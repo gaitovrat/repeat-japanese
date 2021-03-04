@@ -37,6 +37,7 @@ export default {
   },
   methods: {
     stop() {
+      document.removeEventListener('keyup', this.clickKey)
       this.$emit('close')
     },
     getRandomChar() {
@@ -48,12 +49,13 @@ export default {
     next() {
       const el = this.kana.filter((el) => el.kana === this.char)[0]
 
-      el.romaji === this.inputText ? this.count.correct++ : this.count.wrong++
-      alert(
-        el.romaji === this.inputText
-          ? 'Correctly'
-          : `Wrong. It is "${el.romaji}"`
-      )
+      if (el.romaji === this.inputText) {
+        this.count.correct++
+        alert('Correctly')
+      } else {
+        this.count.wrong++
+        alert(`Wrong. It is "${el.romaji}"`)
+      }
 
       if (this.kana.length !== 1) {
         const index = this.kana.indexOf(el)
@@ -68,9 +70,17 @@ export default {
         this.showResult = true
       }
     },
+    clickKey(event) {
+      if (event.key === 'Enter') {
+        this.next()
+      } else if (event.key === 'Escape') {
+        this.stop()
+      }
+    },
   },
   beforeMount() {
     this.setRandomChar()
+    document.addEventListener('keyup', this.clickKey)
   },
   props: {
     kana: Array,
