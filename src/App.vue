@@ -1,22 +1,26 @@
 <template>
   <div id="app" class="flex-center-container">
-    <Chars v-if="state.isStart" @close="invertStart" />
+    <!-- <Chars v-if="state.isStart" @close="invertStart" />
     <div v-else>
       <h1>Japanese-Repeate</h1>
       <div class="buttons flex-center-container">
         <button v-on:click="invertStart()">Start</button>
       </div>
-    </div>
+    </div> -->
+    <h1>Example</h1>
+    <Button text="clickme" />
   </div>
 </template>
 
 <script>
-import Chars from './components/Chars'
+// import Chars from './components/Chars'
+import Button from './components/style/Button'
 
 export default {
   name: 'App',
   components: {
-    Chars,
+    // Chars,
+    Button,
   },
   data() {
     return {
@@ -52,32 +56,6 @@ body,
 h1 {
   margin: 0;
   padding: 0;
-}
-
-.buttons {
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-}
-
-.buttons > button {
-  margin: 0 10px;
-}
-
-button:hover {
-  background-color: white;
-  color: black;
-  border: 2px solid red;
-  padding: 10px 10px;
-}
-
-button {
-  background-color: red;
-  color: white;
-  border-radius: 10px;
-  border: 2px solid white;
-  padding: 10px 10px;
-  outline: none;
 }
 
 h1 {

@@ -7,8 +7,8 @@ Vue.use(Vuex)
 
 const store = new Vuex.Store({
   state: {
-      hiragana: data.hiragana,
-      katakana: data.katakana,
+    hiragana: data.hiragana,
+    katakana: data.katakana,
   },
 })
 
