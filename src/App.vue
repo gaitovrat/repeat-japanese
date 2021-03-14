@@ -1,35 +1,27 @@
 <template>
   <div id="app" class="flex-center-container">
-    <Settings v-bind:kana="kana" v-if="state.isShowModal" @close="invertShowModal" />
-    <Chars v-bind:kana="[...kana[0], ...kana[1]]" v-if="state.isStart" @close="invertStart" />
+    <Chars v-if="state.isStart" @close="invertStart" />
     <div v-else>
       <h1>Japanese-Repeate</h1>
       <div class="buttons flex-center-container">
         <button v-on:click="invertStart()">Start</button>
-        <button v-on:click="invertShowModal()">Settings</button>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import Data from './utils/data'
-import Settings from './components/Settings'
 import Chars from './components/Chars'
 
 export default {
   name: 'App',
   components: {
-    Settings,
     Chars,
   },
   data() {
     return {
-      hiragana: Data.hiragana,
-      katakana: Data.katakana,
       state: {
         isStart: false,
-        isShowModal: false,
       },
     }
   },
@@ -37,15 +29,7 @@ export default {
     invertStart() {
       this.state.isStart = !this.state.isStart
     },
-    invertShowModal() {
-      this.state.isShowModal = !this.state.isShowModal
-    },
   },
-  computed: {
-    kana() {
-      return [this.hiragana, this.katakana]
-    }
-  }
 }
 </script>
 

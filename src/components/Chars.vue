@@ -82,9 +82,14 @@ export default {
     this.setRandomChar()
     document.addEventListener('keyup', this.clickKey)
   },
-  props: {
-    kana: Array,
-  },
+  computed: {
+    kana() {
+      const katakana = this.$store.state.katakana
+      const hiragana = this.$store.state.hiragana 
+
+      return [...katakana, ...hiragana]
+    }
+  }
 }
 </script>
 
