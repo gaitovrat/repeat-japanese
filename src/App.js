@@ -1,6 +1,10 @@
+import { useSelector } from 'react-redux';
+
 function App() {
+  const msg = useSelector((state) => state.msg);
+
   return (
-    <div className="app">Hello world!</div>
+    <div className="app">{ msg }</div>
   );
 }
 
