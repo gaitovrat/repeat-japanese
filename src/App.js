@@ -1,10 +1,10 @@
 import { useSelector } from 'react-redux';
 
 function App() {
-  const msg = useSelector((state) => state.msg);
+  const hiragana = useSelector((state) => state.hiragana);
 
   return (
-    <div className="app">{ msg }</div>
+    <div className="app">{ hiragana[0].kana }</div>
   );
 }
 

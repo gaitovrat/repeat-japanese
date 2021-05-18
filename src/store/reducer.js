@@ -1,6 +1,6 @@
-import { katakana } from './katakana';
+import data from '../data/data'
 
-const reducer = (state = katakana, action) => {
+const reducer = (state = data, action) => {
   switch (action.type) {
     default:
       return state;
